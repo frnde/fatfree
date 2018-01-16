@@ -2262,9 +2262,6 @@ final class Base extends Prefab implements ArrayAccess {
 		}
 		$_SERVER['DOCUMENT_ROOT']=realpath($_SERVER['DOCUMENT_ROOT']);
 		$base='';
-		if (!$cli)
-			$base=rtrim($this->fixslashes(
-				dirname($_SERVER['SCRIPT_NAME'])),'/');
 		$uri=parse_url((preg_match('/^\w+:\/\//',$_SERVER['REQUEST_URI'])?'':
 			'//'.$_SERVER['SERVER_NAME']).$_SERVER['REQUEST_URI']);
 		$_SERVER['REQUEST_URI']=$uri['path'].
