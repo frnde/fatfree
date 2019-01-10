@@ -341,9 +341,10 @@ class Web extends Prefab {
 		$err='';
 		if (is_string($body)) {
 			$match=NULL;
-			foreach ($headers as $header)
+			foreach ($headers as $header) {
 				if (preg_match('/Content-Encoding: (.+)/',$header,$match))
 					break;
+			}
 			if ($match)
 				switch ($match[1]) {
 					case 'gzip':

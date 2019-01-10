@@ -62,12 +62,13 @@ class Test {
 		$out=(bool)$cond;
 		if ($this->level==$out || $this->level==self::FLAG_Both) {
 			$data=['status'=>$out,'text'=>$text,'source'=>NULL];
-			foreach (debug_backtrace() as $frame)
+			foreach (debug_backtrace() as $frame) {
 				if (isset($frame['file'])) {
 					$data['source']=Base::instance()->
 						fixslashes($frame['file']).':'.$frame['line'];
 					break;
 				}
+			}
 			$this->data[]=$data;
 		}
 		if (!$out && $this->passed)

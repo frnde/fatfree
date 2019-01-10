@@ -284,7 +284,7 @@ final class Base extends Prefab implements ArrayAccess {
 				$var=$this->hive;
 		}
 		$obj=FALSE;
-		foreach ($parts as $part)
+		foreach ($parts as $part) {
 			if ($part=='->')
 				$obj=TRUE;
 			elseif ($obj) {
@@ -308,6 +308,7 @@ final class Base extends Prefab implements ArrayAccess {
 					break;
 				}
 			}
+		}
 		return $var;
 	}
 
@@ -2170,9 +2171,6 @@ final class Base extends Prefab implements ArrayAccess {
 		if (extension_loaded('mbstring'))
 			mb_internal_encoding($charset);
 		ini_set('display_errors',0);
-		// Deprecated directives
-		@ini_set('magic_quotes_gpc',0);
-		@ini_set('register_globals',0);
 		// Intercept errors/exceptions; PHP5.3-compatible
 		$check=error_reporting((E_ALL|E_STRICT)&~(E_NOTICE|E_USER_NOTICE));
 		set_exception_handler(
