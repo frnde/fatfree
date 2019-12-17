@@ -4,8 +4,9 @@
 	"homepage": "http://fatfreeframework.com/",
 	"license": "GPL-3.0",
 	"require": {
-		"php": ">=5.4"
-	},
+		"php": ">=5.4",
+		"ext-curl": "*"
+    },
 	"repositories": [
 		{
 			"type": "vcs",
@@ -14,5 +15,8 @@
 	],
 	"autoload": {
 		"files": ["lib/base.php"]
+	},
+	"require-dev": {
+		"phpcompatibility/php-compatibility": "^9.3"
 	}
 }

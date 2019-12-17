@@ -2,66 +2,69 @@
 
 /*
 
-	Copyright (c) 2009-2017 F3::Factory/Bong Cosca, All rights reserved.
+    Copyright (c) 2009-2017 F3::Factory/Bong Cosca, All rights reserved.
 
-	This file is part of the Fat-Free Framework (http://fatfreeframework.com).
+    This file is part of the Fat-Free Framework (http://fatfreeframework.com).
 
-	This is free software: you can redistribute it and/or modify it under the
-	terms of the GNU General Public License as published by the Free Software
-	Foundation, either version 3 of the License, or later.
+    This is free software: you can redistribute it and/or modify it under the
+    terms of the GNU General Public License as published by the Free Software
+    Foundation, either version 3 of the License, or later.
 
-	Fat-Free Framework is distributed in the hope that it will be useful,
-	but WITHOUT ANY WARRANTY; without even the implied warranty of
-	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-	General Public License for more details.
+    Fat-Free Framework is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+    General Public License for more details.
 
-	You should have received a copy of the GNU General Public License along
-	with Fat-Free Framework.  If not, see <http://www.gnu.org/licenses/>.
+    You should have received a copy of the GNU General Public License along
+    with Fat-Free Framework.  If not, see <http://www.gnu.org/licenses/>.
 
 */
 
 //! Custom logger
-class Log {
+class Log
+{
 
-	protected
-		//! File name
-		$file;
+    protected //! File name
+        $file;
 
-	/**
-	*	Write specified text to log file
-	*	@return string
-	*	@param $text string
-	*	@param $format string
-	**/
-	function write($text,$format='r') {
-		$fw=Base::instance();
-		$fw->write(
-			$this->file,
-			date($format).
-				(isset($_SERVER['REMOTE_ADDR'])?
-					(' ['.$_SERVER['REMOTE_ADDR'].']'):'').' '.
-			trim($text).PHP_EOL,
-			TRUE
-		);
-	}
+    /**
+    *   Write specified text to log file
+    *   @return string
+    *   @param $text string
+    *   @param $format string
+    **/
+    public function write($text, $format = 'r')
+    {
+        $fw = Base::instance();
+        $fw->write(
+            $this->file,
+            date($format) .
+                (isset($_SERVER['REMOTE_ADDR']) ?
+                    (' [' . $_SERVER['REMOTE_ADDR'] . ']') : '') . ' ' .
+            trim($text) . PHP_EOL,
+            true
+        );
+    }
 
-	/**
-	*	Erase log
-	*	@return NULL
-	**/
-	function erase() {
-		@unlink($this->file);
-	}
+    /**
+    *   Erase log
+    *   @return NULL
+    **/
+    public function erase()
+    {
+        @unlink($this->file);
+    }
 
-	/**
-	*	Instantiate class
-	*	@param $file string
-	**/
-	function __construct($file) {
-		$fw=Base::instance();
-		if (!is_dir($dir=$fw->LOGS))
-			mkdir($dir,Base::MODE,TRUE);
-		$this->file=$dir.$file;
-	}
-
+    /**
+    *   Instantiate class
+    *   @param $file string
+    **/
+    public function __construct($file)
+    {
+        $fw = Base::instance();
+        if (!is_dir($dir = $fw->LOGS)) {
+            mkdir($dir, Base::MODE, true);
+        }
+        $this->file = $dir . $file;
+    }
 }
